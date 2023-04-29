@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import logo from "./logo.png";
 function App() {
   const [product, setProduct] = useState([]);
   const [viewer1, setViewer1] = useState(false);
@@ -16,6 +16,7 @@ function App() {
   });
   const [checked4, setChecked4] = useState(false);
   const [index, setIndex] = useState(0);
+  const [screen, setScreen] = useState("");
 
   useEffect(() => {
     getAllProducts();
@@ -153,18 +154,77 @@ function App() {
       Rate :{el.rating.rate} and Count:{el.rating.count} <br />
     </div>
   ));
+  const handleAdd = () => {
+    setScreen("Add");
+  };
+  const handleRead = () => {
+    setScreen("Read");
+  };
+  const handleUpdate = () => {
+    setScreen("Update");
+  };
+  const handleDelete = () => {
+    setScreen("Delete");
+  };
+  const handleBack = () => {
+    setScreen("");
+  };
+  const chooseComponent = (screen) => {
+    switch (screen) {
+      case "Add": {
+        return Add();
+      }
+      case "Read": {
+        return Read();
+      }
+      case "Update": {
+        return Update();
+      }
+      case "Delete": {
+        return Delete();
+      }
+      default:
+        return (
+          <div>
+            <button
+              onClick={() => {
+                handleAdd();
+              }}
+              type="button"
+            >
+              Add
+            </button>
+            <button
+              onClick={() => {
+                handleRead();
+              }}
+              type="button"
+            >
+              Read
+            </button>
+            <button
+              onClick={() => {
+                handleDelete();
+              }}
+              type="button"
+            >
+              Delete
+            </button>
+            <button
+              onClick={() => {
+                handleUpdate();
+              }}
+              type="button"
+            >
+              Update
+            </button>
+          </div>
+        );
+    }
+  };
 
-  return (
-    <div>
-      <h1>Catalog of Products</h1>
-      <button onClick={() => getAllProducts()}>Show All products</button>
-      <input
-        type="text"
-        id="message"
-        name="message"
-        placeholder="id"
-        onChange={(e) => getOneProduct(e.target.value)}
-      />
+  const Add = () => {
+    return (
       <div>
         <h3>Add a new product :</h3>
         <form action="">
@@ -227,8 +287,55 @@ function App() {
           <button type="submit" onClick={handleOnSubmit}>
             submit
           </button>
+          <button
+            onClick={() => {
+              handleBack();
+            }}
+            type="button"
+          >
+            Go Back
+          </button>
         </form>
       </div>
+    );
+  };
+
+  const Read = () => {
+    return (
+      <div>
+        <button onClick={() => getAllProducts()}>Show All products</button>
+        <h1>Show all available Products.</h1>
+        <hr></hr>
+        {viewer1 && <div>Products {showAllItems}</div>}
+        <hr></hr>
+        <button
+          onClick={() => {
+            handleBack();
+          }}
+          type="button"
+        >
+          Go Back
+        </button>
+      </div>
+    );
+  };
+  const Update = () => {
+    return (
+      <div>
+        <button
+          onClick={() => {
+            handleBack();
+          }}
+          type="button"
+        >
+          Go Back
+        </button>
+      </div>
+    );
+  };
+
+  const Delete = () => {
+    return (
       <div>
         <h3>Delete one product:</h3>
         <input
@@ -243,6 +350,14 @@ function App() {
         <button onClick={() => deleteOneProduct(product[index]._id)}>
           Delete
         </button>
+        <button
+          onClick={() => {
+            handleBack();
+          }}
+          type="button"
+        >
+          Go Back
+        </button>
         {checked4 && (
           <div key={product[index]._id}>
             <img src={product[index].image} width={30} /> <br />
@@ -255,13 +370,28 @@ function App() {
           </div>
         )}
       </div>
-      <h1>Show all available Products.</h1>
-      <hr></hr>
-      {viewer1 && <div>Products {showAllItems}</div>}
-      <hr></hr>
-      <h1>Show one Product by Id:</h1>
-      {viewer4 && <div>Product: {showOneItem}</div>}
-      <hr></hr>
+    );
+  };
+  return (
+    <div>
+      <h1>Catalog of Products</h1>
+
+      <div style={{ display: "flex" }}>
+        <div style={{ width: "25%", flex: 1 }}>
+          <img src={logo} alt="Sunset in the mountains" />
+          <div>
+            <h1> Store</h1>
+            <p className="text-gray-700 text-white">
+              {" "}
+              by -{" "}
+              <b style={{ color: "orange" }}>
+                Eduardo Ramirez and Isabelle Raghavan
+              </b>
+            </p>
+          </div>
+        </div>
+        <div style={{ flex: 2 }}>{chooseComponent(screen)}</div>
+      </div>
     </div>
   );
 }

@@ -162,7 +162,8 @@ function App() {
           const value = Object.values(data);
           alert(value);
         }
-      });
+      })
+      .catch((err) => console.log("Error while updating product:", err));
     setChecked4(!checked4);
   }
 

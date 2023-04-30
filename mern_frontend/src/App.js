@@ -17,6 +17,7 @@ function App() {
   const [checked4, setChecked4] = useState(false);
   const [index, setIndex] = useState(0);
   const [screen, setScreen] = useState("");
+  const [update, setUpdate] = useState("");
 
   useEffect(() => {
     getAllProducts();
@@ -143,6 +144,26 @@ function App() {
     } else {
       console.log("Wrong number of Product id.");
     }
+  }
+
+  //This function will update the price of the product
+  function updateProduct(id, update) {
+    console.log(id, update);
+    fetch("http://localhost:4000/update/" + id, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({price: update}),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Update product completed : ", id);
+      console.log(data);
+      if (data) {
+        const value = Object.values(data);
+        alert(value);
+      }
+    });
+    setChecked4(!checked4);
   }
 
   const showAllItems = product.map((el) => (
@@ -319,17 +340,26 @@ function App() {
       </div>
     );
   };
-  const Update = () => {
+
+//this takes the new price inputted by the user and calls the function updateProduct() 
+//to update the price
+  const Update = ({ id, updateProduct }) => {
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      updateProduct(id, update);
+      setUpdate("");
+    };
     return (
       <div>
-        <button
-          onClick={() => {
-            handleBack();
-          }}
-          type="button"
-        >
-          Go Back
-        </button>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="New price"
+            value={update}
+            onChange={(e) => setUpdate(e.target.value)}
+          />
+          <button type="submit">Update</button>
+        </form>
       </div>
     );
   };

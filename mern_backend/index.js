@@ -76,3 +76,24 @@ app.delete("/delete", async (req, res) => {
     console.log("Error while deleting :" + p_id + " " + err);
   }
 });
+
+app.put("/update/:id", async (req, res) => {
+  const id = req.params.id;
+  const query = { _id: id };
+  const update = req.body;
+
+  try {
+    const updatedProduct = await Product.findOneAndUpdate(query, update, {
+      new: true, 
+    });
+
+    if (!updatedProduct) {
+      return res.status(404).send({ message: "Product not found" });
+    }
+
+    res.send(updatedProduct);
+  } catch (err) {
+    console.log("Error while updating a product:" + err);
+    res.status(500).send({ message: "Internal server error" });
+  }
+});

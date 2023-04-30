@@ -410,7 +410,7 @@ function App() {
             Title: {product[index].title} <br />
             Category: {product[index].category} <br />
             Price: {product[index].price} <br />
-            Rate :{product[index].rating.rate} and Count:
+            Rate: {product[index].rating.rate} and Count:
             {product[index].rating.count} <br />
           </div>
         )}
@@ -423,15 +423,23 @@ function App() {
 
       <div style={{ display: "flex" }}>
         <div style={{ width: "25%", flex: 1 }}>
-          <img src={logo} alt="Sunset in the mountains" />
+          <img src={logo} alt="ISU" />
           <div>
             <h1> Store</h1>
             <p className="text-gray-700 text-white">
               {" "}
               by -{" "}
               <b style={{ color: "orange" }}>
-                Eduardo Ramirez and Isabelle Raghavan
+                Eduardo Ramirez: eduardor@iastate.edu and Isabelle Raghavan:
+                raghavan@iastate.edu
               </b>
+            </p>
+            <p>COMS 319: Construction of User Interfaces</p>
+            <p>4/30/2023</p>
+            <p>Abraham Aldaco</p>
+            <p>
+              This project is a test of using MERN. It simulates adding,
+              removing, updating, and viewing items in a database.
             </p>
           </div>
         </div>

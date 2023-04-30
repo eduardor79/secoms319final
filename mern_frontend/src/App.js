@@ -17,7 +17,7 @@ function App() {
   const [checked4, setChecked4] = useState(false);
   const [index, setIndex] = useState(0);
   const [screen, setScreen] = useState("");
-  const [update, setUpdate] = useState("");
+  const [update, setUpdate] = useState(0);
 
   useEffect(() => {
     getAllProducts();
@@ -147,22 +147,22 @@ function App() {
   }
 
   //This function will update the price of the product
-  function updateProduct(id, update) {
+  function updateProduct(id) {
     console.log(id, update);
     fetch("http://localhost:4000/update/" + id, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({price: update}),
+      body: JSON.stringify({ price: update }),
     })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Update product completed : ", id);
-      console.log(data);
-      if (data) {
-        const value = Object.values(data);
-        alert(value);
-      }
-    });
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Update product completed : ", id);
+        console.log(data);
+        if (data) {
+          const value = Object.values(data);
+          alert(value);
+        }
+      });
     setChecked4(!checked4);
   }
 
@@ -341,25 +341,39 @@ function App() {
     );
   };
 
-//this takes the new price inputted by the user and calls the function updateProduct() 
-//to update the price
-  const Update = ({ id, updateProduct }) => {
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      updateProduct(id, update);
-      setUpdate("");
-    };
+  //this takes the new price inputted by the user and calls the function updateProduct()
+  //to update the price
+  const Update = () => {
     return (
       <div>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="New price"
-            value={update}
-            onChange={(e) => setUpdate(e.target.value)}
-          />
-          <button type="submit">Update</button>
-        </form>
+        <button onClick={() => getOneByOneProductPrev()}>Prev</button>
+        <button onClick={() => getOneByOneProductNext()}>Next</button>
+        <input
+          type="text"
+          placeholder="New price"
+          value={update}
+          onChange={(e) => setUpdate(e.target.value)}
+        />
+        <button onClick={() => updateProduct(product[index]._id)}>
+          Update
+        </button>
+        <button
+          onClick={() => {
+            handleBack();
+          }}
+          type="button"
+        >
+          Go Back
+        </button>
+        <div key={product[index]._id}>
+          <img src={product[index].image} width={30} /> <br />
+          Id:{product[index]._id} <br />
+          Title: {product[index].title} <br />
+          Category: {product[index].category} <br />
+          Price: {product[index].price} <br />
+          Rate :{product[index].rating.rate} and Count:
+          {product[index].rating.count} <br />
+        </div>
       </div>
     );
   };

@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import logo from "./logo.png";
 function App() {
-  const [product, setProduct] = useState([]);
+  const [car, setCar] = useState([]);
   const [viewer1, setViewer1] = useState(false);
-  const [oneProduct, setOneProduct] = useState([]);
+  const [oneCar, setOneCar] = useState([]);
   const [viewer4, setViewer4] = useState(false);
-  const [addNewProduct, setAddNewProduct] = useState({
+  const [addNewCar, setAddNewCar] = useState({
     _id: 0,
     title: "",
     price: 0.0,
@@ -20,29 +20,29 @@ function App() {
   const [update, setUpdate] = useState(0);
 
   useEffect(() => {
-    getAllProducts();
+    getAllCars();
   }, [checked4]);
 
-  function getOneByOneProductNext() {
-    if (product.length > 0) {
-      if (index === product.length - 1) setIndex(0);
+  function getOneByOneCarNext() {
+    if (car.length > 0) {
+      if (index === car.length - 1) setIndex(0);
       else setIndex(index + 1);
-      if (product.length > 0) setViewer4(true);
+      if (car.length > 0) setViewer4(true);
       else setViewer4(false);
     }
   }
 
-  function getOneByOneProductPrev() {
-    if (product.length > 0) {
-      if (index === 0) setIndex(product.length - 1);
+  function getOneByOneCarPrev() {
+    if (car.length > 0) {
+      if (index === 0) setIndex(car.length - 1);
       else setIndex(index - 1);
-      if (product.length > 0) setViewer4(true);
+      if (car.length > 0) setViewer4(true);
       else setViewer4(false);
     }
   }
 
-  function deleteOneProduct(deleteid) {
-    console.log("Product to delete :", deleteid);
+  function deleteOneCar(deleteid) {
+    console.log("Car to delete :", deleteid);
     fetch("http://localhost:4000/delete/", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
@@ -50,7 +50,7 @@ function App() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Delete a product completed : ", deleteid);
+        console.log("Delete a car completed : ", deleteid);
         console.log(data);
         if (data) {
           //const keys = Object.keys(data);
@@ -61,13 +61,13 @@ function App() {
     setChecked4(!checked4);
   }
 
-  function getAllProducts() {
+  function getAllCars() {
     fetch("http://localhost:4000/")
       .then((response) => response.json())
       .then((data) => {
-        console.log("Show Catalog of Products :");
+        console.log("Show Cars :");
         console.log(data);
-        setProduct(data);
+        setCar(data);
       });
     setViewer1(!viewer1);
   }
@@ -78,11 +78,11 @@ function App() {
     fetch("http://localhost:4000/insert", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(addNewProduct),
+      body: JSON.stringify(addNewCar),
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Post a new product completed");
+        console.log("Post a new car completed");
         console.log(data);
         if (data) {
           //const keys = Object.keys(data);
@@ -92,62 +92,57 @@ function App() {
       });
   }
 
-  const showOneItem = oneProduct.map((el) => (
+  const showOneItem = oneCar.map((el) => (
     <div key={el._id}>
       <img src={el.image} width={30} /> <br />
       Title: {el.title} <br />
       Category: {el.category} <br />
       Price: {el.price} <br />
-      Rate :{el.rating.rate} and Count:{el.rating.count} <br />
+      Color:{el.color} <br />
     </div>
   ));
 
   function handleChange(evt) {
     const value = evt.target.value;
     if (evt.target.name === "_id") {
-      setAddNewProduct({ ...addNewProduct, _id: value });
+      setAddNewCar({ ...addNewCar, _id: value });
     } else if (evt.target.name === "title") {
-      setAddNewProduct({ ...addNewProduct, title: value });
+      setAddNewCar({ ...addNewCar, title: value });
     } else if (evt.target.name === "price") {
-      setAddNewProduct({ ...addNewProduct, price: value });
-    } else if (evt.target.name === "description") {
-      setAddNewProduct({ ...addNewProduct, description: value });
+      setAddNewCar({ ...addNewCar, price: value });
     } else if (evt.target.name === "category") {
-      setAddNewProduct({ ...addNewProduct, category: value });
+      setAddNewCar({ ...addNewCar, category: value });
     } else if (evt.target.name === "image") {
       const temp = value;
-      setAddNewProduct({ ...addNewProduct, image: temp });
-    } else if (evt.target.name === "rate") {
-      setAddNewProduct({ ...addNewProduct, rating: { rate: value } });
-    } else if (evt.target.name === "count") {
-      const temp = addNewProduct.rating.rate;
-      setAddNewProduct({
-        ...addNewProduct,
-        rating: { rate: temp, count: value },
+      setAddNewCar({ ...addNewCar, image: temp });
+    } else if (evt.target.name === "color") {
+      setAddNewCar({
+        ...addNewCar,
+        color: value,
       });
     }
   }
 
-  function getOneProduct(id) {
+  function getOneCar(id) {
     console.log(id);
     if (id >= 1 && id <= 20) {
       fetch("http://localhost:4000/" + id)
         .then((response) => response.json())
         .then((data) => {
-          console.log("Show one product :", id);
+          console.log("Show one car: ", id);
           console.log(data);
           const dataArr = [];
           dataArr.push(data);
-          setOneProduct(dataArr);
+          setOneCar(dataArr);
         });
       setViewer4(!viewer4);
     } else {
-      console.log("Wrong number of Product id.");
+      console.log("Wrong number of Car ids.");
     }
   }
 
   //This function will update the price of the product
-  function updateProduct(id) {
+  function updateCar(id) {
     console.log(id, update);
     fetch("http://localhost:4000/update/" + id, {
       method: "PUT",
@@ -156,24 +151,24 @@ function App() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Update product completed : ", id);
+        console.log("Update car completed : ", id);
         console.log(data);
         if (data) {
           const value = Object.values(data);
           alert(value);
         }
       })
-      .catch((err) => console.log("Error while updating product:", err));
+      .catch((err) => console.log("Error while updating car: ", err));
     setChecked4(!checked4);
   }
 
-  const showAllItems = product.map((el) => (
+  const showAllItems = car.map((el) => (
     <div key={el._id}>
       <img src={el.image} width={30} /> <br />
       Title: {el.title} <br />
       Category: {el.category} <br />
       Price: {el.price} <br />
-      Rate :{el.rating.rate} and Count:{el.rating.count} <br />
+      Color :{el.color} <br />
     </div>
   ));
   const handleAdd = () => {
@@ -248,62 +243,48 @@ function App() {
   const Add = () => {
     return (
       <div>
-        <h3>Add a new product :</h3>
+        <h3>Add a new car:</h3>
         <form action="">
           <input
             type="number"
             placeholder="id?"
             name="_id"
-            value={addNewProduct._id}
+            value={addNewCar._id}
             onChange={handleChange}
           />
           <input
             type="text"
-            placeholder="title?"
+            placeholder="year, make, and model?"
             name="title"
-            value={addNewProduct.title}
+            value={addNewCar.title}
             onChange={handleChange}
           />
           <input
             type="number"
             placeholder="price?"
             name="price"
-            value={addNewProduct.price}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            placeholder="description?"
-            name="description"
-            value={addNewProduct.description}
+            value={addNewCar.price}
             onChange={handleChange}
           />
           <input
             type="text"
             placeholder="category?"
             name="category"
-            value={addNewProduct.category}
+            value={addNewCar.category}
             onChange={handleChange}
           />
           <input
             type="text"
             placeholder="image?"
             name="image"
-            value={addNewProduct.image}
+            value={addNewCar.image}
             onChange={handleChange}
           />
           <input
             type="number"
-            placeholder="rate?"
-            name="rate"
-            value={addNewProduct.rating.rate}
-            onChange={handleChange}
-          />
-          <input
-            type="number"
-            placeholder="count?"
-            name="count"
-            value={addNewProduct.rating.count}
+            placeholder="color?"
+            name="color"
+            value={addNewCar.color}
             onChange={handleChange}
           />
           <button type="submit" onClick={handleOnSubmit}>
@@ -325,10 +306,10 @@ function App() {
   const Read = () => {
     return (
       <div>
-        <button onClick={() => getAllProducts()}>Show All products</button>
-        <h1>Show all available Products.</h1>
+        <button onClick={() => getAllCars()}>Show All Cars</button>
+        <h1>Show all available Cars.</h1>
         <hr></hr>
-        {viewer1 && <div>Products {showAllItems}</div>}
+        {viewer1 && <div>Cars {showAllItems}</div>}
         <hr></hr>
         <button
           onClick={() => {
@@ -342,22 +323,20 @@ function App() {
     );
   };
 
-  //this takes the new price inputted by the user and calls the function updateProduct()
+  //this takes the new price inputted by the user and calls the function updateCar()
   //to update the price
   const Update = () => {
     return (
       <div>
-        <button onClick={() => getOneByOneProductPrev()}>Prev</button>
-        <button onClick={() => getOneByOneProductNext()}>Next</button>
+        <button onClick={() => getOneByOneCarPrev()}>Prev</button>
+        <button onClick={() => getOneByOneCarNext()}>Next</button>
         <input
           type="text"
           placeholder="New price"
           value={update}
           onChange={(e) => setUpdate(e.target.value)}
         />
-        <button onClick={() => updateProduct(product[index]._id)}>
-          Update
-        </button>
+        <button onClick={() => updateCar(car[index]._id)}>Update</button>
         <button
           onClick={() => {
             handleBack();
@@ -366,14 +345,13 @@ function App() {
         >
           Go Back
         </button>
-        <div key={product[index]._id}>
-          <img src={product[index].image} width={30} /> <br />
-          Id:{product[index]._id} <br />
-          Title: {product[index].title} <br />
-          Category: {product[index].category} <br />
-          Price: {product[index].price} <br />
-          Rate :{product[index].rating.rate} and Count:
-          {product[index].rating.count} <br />
+        <div key={car[index]._id}>
+          <img src={car[index].image} width={30} /> <br />
+          Id:{car[index]._id} <br />
+          Title: {car[index].title} <br />
+          Category: {car[index].category} <br />
+          Price: {car[index].price} <br />
+          Color :{car[index].color}
         </div>
       </div>
     );
@@ -382,7 +360,7 @@ function App() {
   const Delete = () => {
     return (
       <div>
-        <h3>Delete one product:</h3>
+        <h3>Delete one car: </h3>
         <input
           type="checkbox"
           id="acceptdelete"
@@ -390,11 +368,9 @@ function App() {
           checked={checked4}
           onChange={(e) => setChecked4(!checked4)}
         />
-        <button onClick={() => getOneByOneProductPrev()}>Prev</button>
-        <button onClick={() => getOneByOneProductNext()}>Next</button>
-        <button onClick={() => deleteOneProduct(product[index]._id)}>
-          Delete
-        </button>
+        <button onClick={() => getOneByOneCarPrev()}>Prev</button>
+        <button onClick={() => getOneByOneCarNext()}>Next</button>
+        <button onClick={() => deleteOneCar(car[index]._id)}>Delete</button>
         <button
           onClick={() => {
             handleBack();
@@ -404,14 +380,14 @@ function App() {
           Go Back
         </button>
         {checked4 && (
-          <div key={product[index]._id}>
-            <img src={product[index].image} width={30} /> <br />
-            Id:{product[index]._id} <br />
-            Title: {product[index].title} <br />
-            Category: {product[index].category} <br />
-            Price: {product[index].price} <br />
-            Rate: {product[index].rating.rate} and Count:
-            {product[index].rating.count} <br />
+          <div key={car[index]._id}>
+            <img src={car[index].image} width={30} /> <br />
+            Id:{car[index]._id} <br />
+            Title: {car[index].title} <br />
+            Category: {car[index].category} <br />
+            Price: {car[index].price} <br />
+            Color: {car[index].color}
+            <br />
           </div>
         )}
       </div>
@@ -419,13 +395,12 @@ function App() {
   };
   return (
     <div>
-      <h1>Catalog of Products</h1>
-
+      <h1>Catalog of Cars</h1>
       <div style={{ display: "flex" }}>
         <div style={{ width: "25%", flex: 1 }}>
           <img src={logo} alt="ISU" />
           <div>
-            <h1> Store</h1>
+            <h1>Dealership</h1>
             <p className="text-gray-700 text-white">
               {" "}
               by -{" "}
@@ -438,8 +413,8 @@ function App() {
             <p>4/30/2023</p>
             <p>Abraham Aldaco</p>
             <p>
-              This project is a test of using MERN. It simulates adding,
-              removing, updating, and viewing items in a database.
+              This project is a final for COMS 319. It simulates a dealership
+              application for their cars.
             </p>
           </div>
         </div>

@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
-const Product = require("./dataSchema.js");
+const Car = require("./dataSchema.js");
 
 app.use(express.json());
 app.use(cors());
@@ -24,52 +24,49 @@ app.listen(port, () => {
 
 app.get("/", async (req, resp) => {
   const query = {};
-  const allProducts = await Product.find(query);
-  console.log(allProducts);
-  resp.send(allProducts);
+  const allCars = await Car.find(query);
+  console.log(allCars);
+  resp.send(allCars);
 });
 app.get("/:id", async (req, resp) => {
   const id = req.params.id;
   const query = { _id: id };
-  const oneProduct = await Product.findOne(query);
-  console.log(oneProduct);
-  resp.send(oneProduct);
+  const oneCar = await Car.findOne(query);
+  console.log(oneCar);
+  resp.send(oneCar);
 });
 app.post("/insert", async (req, res) => {
   console.log(req.body);
-  const p_id = req.body._id;
-  const ptitle = req.body.title;
-  const pprice = req.body.price;
-  const pdescription = req.body.description;
-  const pcategory = req.body.category;
-  const pimage = req.body.image;
-  const prate = req.body.rating.rate;
-  const pcount = req.body.rating.count;
-  const formData = new Product({
-    _id: p_id,
-    title: ptitle,
-    price: pprice,
-    description: pdescription,
-    category: pcategory,
-    image: pimage,
-    rating: { rate: prate, count: pcount },
+  const c_id = req.body._id;
+  const ctitle = req.body.title;
+  const cprice = req.body.price;
+  const ccategory = req.body.category;
+  const cimage = req.body.image;
+  const ccolor = req.body.rating.color;
+  const formData = new Car({
+    _id: c_id,
+    title: ctitle,
+    price: cprice,
+    category: ccategory,
+    image: cimage,
+    color: ccolor,
   });
   try {
     // await formData.save();
-    await Product.create(formData);
-    const messageResponse = { message: `Product ${p_id} added correctly` };
+    await Car.create(formData);
+    const messageResponse = { message: `Car ${p_id} added correctly` };
     res.send(JSON.stringify(messageResponse));
   } catch (err) {
-    console.log("Error while adding a new product:" + err);
+    console.log("Error while adding a new car:" + err);
   }
 });
 app.delete("/delete", async (req, res) => {
   console.log("Delete :", req.body);
   try {
     const query = { _id: req.body._id };
-    await Product.deleteOne(query);
+    await Car.deleteOne(query);
     const messageResponse = {
-      message: `Product ${req.body._id} deleted correctly`,
+      message: `Car ${req.body._id} deleted correctly`,
     };
     res.send(JSON.stringify(messageResponse));
   } catch (err) {
@@ -83,17 +80,17 @@ app.put("/update/:id", async (req, res) => {
   const update = req.body;
 
   try {
-    const updatedProduct = await Product.findOneAndUpdate(query, update, {
-      new: true, 
+    const updatedCar = await Car.findOneAndUpdate(query, update, {
+      new: true,
     });
 
-    if (!updatedProduct) {
-      return res.status(404).send({ message: "Product not found" });
+    if (!updatedCar) {
+      return res.status(404).send({ message: "Car not found" });
     }
 
-    res.send(updatedProduct);
+    res.send(updatedCar);
   } catch (err) {
-    console.log("Error while updating a product:" + err);
+    console.log("Error while updating a car:" + err);
     res.status(500).send({ message: "Internal server error" });
   }
 });

@@ -4,15 +4,11 @@ const ReactFormDataSchema = new mongoose.Schema(
     _id: { type: Number },
     title: { type: String },
     price: { type: Number },
-    description: { type: String },
     category: { type: String },
     image: { type: String },
-    rating: {
-      rate: { type: Number },
-      count: { type: Number },
-    },
+    color: { type: String },
   },
-  { collection: "fakestore_catalog" }
+  { collection: "dealership" }
 );
-const Product = mongoose.model("Product", ReactFormDataSchema);
-module.exports = Product;
+const Car = mongoose.model("Car", ReactFormDataSchema);
+module.exports = Car;

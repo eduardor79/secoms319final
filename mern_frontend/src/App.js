@@ -94,7 +94,7 @@ function App() {
 
   const showOneItem = oneCar.map((el) => (
     <div key={el._id}>
-      <img src={el.image} width={30} /> <br />
+      <img src={el.image} alt="" width={30} /> <br />
       Title: {el.title} <br />
       Category: {el.category} <br />
       Price: {el.price} <br />
@@ -164,7 +164,7 @@ function App() {
 
   const showAllItems = car.map((el) => (
     <div key={el._id}>
-      <img src={el.image} width={30} /> <br />
+      <img src={el.image} alt="" width={30} /> <br />
       Title: {el.title} <br />
       Category: {el.category} <br />
       Price: {el.price} <br />
@@ -204,6 +204,7 @@ function App() {
         return (
           <div>
             <button
+              className="border-black border-2 rounded-2xl py-2 px-4 "
               onClick={() => {
                 handleAdd();
               }}
@@ -212,6 +213,7 @@ function App() {
               Add
             </button>
             <button
+              className="border-black border-2 rounded-2xl py-2 px-4 "
               onClick={() => {
                 handleRead();
               }}
@@ -220,6 +222,7 @@ function App() {
               Read
             </button>
             <button
+              className="border-black border-2 rounded-2xl py-2 px-4 "
               onClick={() => {
                 handleDelete();
               }}
@@ -228,6 +231,7 @@ function App() {
               Delete
             </button>
             <button
+              className="border-black border-2 rounded-2xl py-2 px-4 "
               onClick={() => {
                 handleUpdate();
               }}
@@ -287,10 +291,15 @@ function App() {
             value={addNewCar.color}
             onChange={handleChange}
           />
-          <button type="submit" onClick={handleOnSubmit}>
-            submit
+          <button
+            className="border-black border-2 rounded-2xl py-2 px-4 "
+            type="submit"
+            onClick={handleOnSubmit}
+          >
+            Submit
           </button>
           <button
+            className="border-black border-2 rounded-2xl py-2 px-4 "
             onClick={() => {
               handleBack();
             }}
@@ -306,12 +315,17 @@ function App() {
   const Read = () => {
     return (
       <div>
-        <button onClick={() => getAllCars()}>Show All Cars</button>
-        <h1>Show all available Cars.</h1>
+        <button
+          className="border-black border-2 rounded-2xl py-2 px-4 "
+          onClick={() => getAllCars()}
+        >
+          Show All Cars
+        </button>
         <hr></hr>
         {viewer1 && <div>Cars {showAllItems}</div>}
         <hr></hr>
         <button
+          className="border-black border-2 rounded-2xl py-2 px-4 "
           onClick={() => {
             handleBack();
           }}
@@ -328,16 +342,32 @@ function App() {
   const Update = () => {
     return (
       <div>
-        <button onClick={() => getOneByOneCarPrev()}>Prev</button>
-        <button onClick={() => getOneByOneCarNext()}>Next</button>
+        <button
+          className="border-black border-2 rounded-2xl py-2 px-4 "
+          onClick={() => getOneByOneCarPrev()}
+        >
+          Prev
+        </button>
+        <button
+          className="border-black border-2 rounded-2xl py-2 px-4 "
+          onClick={() => getOneByOneCarNext()}
+        >
+          Next
+        </button>
         <input
           type="text"
           placeholder="New price"
           value={update}
           onChange={(e) => setUpdate(e.target.value)}
         />
-        <button onClick={() => updateCar(car[index]._id)}>Update</button>
         <button
+          className="border-black border-2 rounded-2xl py-2 px-4 "
+          onClick={() => updateCar(car[index]._id)}
+        >
+          Update
+        </button>
+        <button
+          className="border-black border-2 rounded-2xl py-2 px-4 "
           onClick={() => {
             handleBack();
           }}
@@ -346,7 +376,7 @@ function App() {
           Go Back
         </button>
         <div key={car[index]._id}>
-          <img src={car[index].image} width={30} /> <br />
+          <img src={car[index].image} alt="" width={30} /> <br />
           Id:{car[index]._id} <br />
           Title: {car[index].title} <br />
           Category: {car[index].category} <br />
@@ -368,10 +398,26 @@ function App() {
           checked={checked4}
           onChange={(e) => setChecked4(!checked4)}
         />
-        <button onClick={() => getOneByOneCarPrev()}>Prev</button>
-        <button onClick={() => getOneByOneCarNext()}>Next</button>
-        <button onClick={() => deleteOneCar(car[index]._id)}>Delete</button>
         <button
+          className="border-black border-2 rounded-2xl py-2 px-4 "
+          onClick={() => getOneByOneCarPrev()}
+        >
+          Prev
+        </button>
+        <button
+          className="border-black border-2 rounded-2xl py-2 px-4 "
+          onClick={() => getOneByOneCarNext()}
+        >
+          Next
+        </button>
+        <button
+          className="border-black border-2 rounded-2xl py-2 px-4 "
+          onClick={() => deleteOneCar(car[index]._id)}
+        >
+          Delete
+        </button>
+        <button
+          className="border-black border-2 rounded-2xl py-2 px-4 "
           onClick={() => {
             handleBack();
           }}
@@ -381,7 +427,7 @@ function App() {
         </button>
         {checked4 && (
           <div key={car[index]._id}>
-            <img src={car[index].image} width={30} /> <br />
+            <img src={car[index].image} alt="" width={30} /> <br />
             Id:{car[index]._id} <br />
             Title: {car[index].title} <br />
             Category: {car[index].category} <br />

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import logo from "./logo.png";
+// import logo from "./logo.png";
+import carLogo from "./carLogo.png"
 function App() {
   const [car, setCar] = useState([]);
   const [viewer1, setViewer1] = useState(false);
@@ -204,7 +205,7 @@ function App() {
         return (
           <div>
             <button
-              className="border-black border-2 rounded-2xl py-2 px-4 "
+              className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
               onClick={() => {
                 handleAdd();
               }}
@@ -213,7 +214,7 @@ function App() {
               Add
             </button>
             <button
-              className="border-black border-2 rounded-2xl py-2 px-4 "
+              className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
               onClick={() => {
                 handleRead();
               }}
@@ -222,7 +223,7 @@ function App() {
               Read
             </button>
             <button
-              className="border-black border-2 rounded-2xl py-2 px-4 "
+              className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
               onClick={() => {
                 handleDelete();
               }}
@@ -231,7 +232,7 @@ function App() {
               Delete
             </button>
             <button
-              className="border-black border-2 rounded-2xl py-2 px-4 "
+              className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded "
               onClick={() => {
                 handleUpdate();
               }}
@@ -441,10 +442,10 @@ function App() {
   };
   return (
     <div>
-      <h1>Catalog of Cars</h1>
+      <h1 class="text-5xl font-extrabold dark:text-white">Catalog of Cars</h1>
       <div style={{ display: "flex" }}>
         <div style={{ width: "25%", flex: 1 }}>
-          <img src={logo} alt="ISU" />
+          <img src={carLogo} alt = "carLogo" />
           <div>
             <h1>Dealership</h1>
             <p className="text-gray-700 text-white">

@@ -203,7 +203,7 @@ function App() {
       }
       default:
         return (
-          <div class="flex-col h-screen flex items-center justify-center gap-20">
+          <div class="flex-col flex items-center justify-center gap-10">
             <button
               className="text-xl w-1/3 bg-blue-500 hover:bg-blue-400 text-white font-bold py-4 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
               onClick={() => {
@@ -446,28 +446,30 @@ function App() {
         Catalog of Cars
       </h1>
       <div style={{ display: "flex", height: "100%" }}>
-        <div class="flex-col h-screen flex items-center  gap-20 w-2/5">
-          <div class="flex justify-center">
-            <img class="object-center w-1/2" src={carLogo} alt="carLogo" />
-          </div>
-          <div class="inline-block align-middle text-center">
-            <p>
-              By -{" "}
-              <b style={{}}>
-                Eduardo Ramirez: eduardor@iastate.edu and Isabelle Raghavan:
-                raghavan@iastate.edu
-              </b>
-            </p>
-            <p>COMS 319: Construction of User Interfaces</p>
-            <p>4/30/2023</p>
-            <p>Abraham Aldaco</p>
-            <p>
-              This project is a final for COMS 319. It simulates a dealership
-              application for their cars.
-            </p>
+        <div style={{ flex: 2 }}>
+          <div class="flex justify-center ">
+            <img class="object-center w-1/5" src={carLogo} alt="carLogo" />
+          </div>{" "}
+          {chooseComponent(screen)}
+          <div class="pt-5 flex-col flex items-center justify-center gap-10 ">
+            <div class="inline-block align-middle text-center">
+              <p>
+                By -{" "}
+                <b style={{}}>
+                  Eduardo Ramirez: eduardor@iastate.edu and Isabelle Raghavan:
+                  raghavan@iastate.edu
+                </b>
+              </p>
+              <p>COMS 319: Construction of User Interfaces</p>
+              <p>4/30/2023</p>
+              <p>Abraham Aldaco</p>
+              <p>
+                This project is a final for COMS 319. It simulates a dealership
+                application for their cars.
+              </p>
+            </div>
           </div>
         </div>
-        <div style={{ flex: 2 }}>{chooseComponent(screen)}</div>
       </div>
     </div>
   );

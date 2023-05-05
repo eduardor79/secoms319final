@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 // import logo from "./logo.png";
-import carLogo from "./carLogo.png"
+import carLogo from "./carLogo.png";
 function App() {
   const [car, setCar] = useState([]);
   const [viewer1, setViewer1] = useState(false);
@@ -203,9 +203,9 @@ function App() {
       }
       default:
         return (
-          <div>
+          <div class="flex-col h-screen flex items-center justify-center gap-20">
             <button
-              className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+              className="text-xl w-1/3 bg-blue-500 hover:bg-blue-400 text-white font-bold py-4 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
               onClick={() => {
                 handleAdd();
               }}
@@ -214,7 +214,7 @@ function App() {
               Add
             </button>
             <button
-              className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+              className="text-xl w-1/3 bg-blue-500 hover:bg-blue-400 text-white font-bold py-4 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
               onClick={() => {
                 handleRead();
               }}
@@ -223,7 +223,7 @@ function App() {
               Read
             </button>
             <button
-              className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+              className="text-xl w-1/3 bg-blue-500 hover:bg-blue-400 text-white font-bold py-4 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
               onClick={() => {
                 handleDelete();
               }}
@@ -232,7 +232,7 @@ function App() {
               Delete
             </button>
             <button
-              className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded "
+              className="text-xl w-1/3 bg-blue-500 hover:bg-blue-400 text-white font-bold py-4 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded "
               onClick={() => {
                 handleUpdate();
               }}
@@ -293,14 +293,14 @@ function App() {
             onChange={handleChange}
           />
           <button
-            className="border-black border-2 rounded-2xl py-2 px-4 "
+            className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
             type="submit"
             onClick={handleOnSubmit}
           >
             Submit
           </button>
           <button
-            className="border-black border-2 rounded-2xl py-2 px-4 "
+            className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
             onClick={() => {
               handleBack();
             }}
@@ -317,7 +317,7 @@ function App() {
     return (
       <div>
         <button
-          className="border-black border-2 rounded-2xl py-2 px-4 "
+          className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
           onClick={() => getAllCars()}
         >
           Show All Cars
@@ -326,7 +326,7 @@ function App() {
         {viewer1 && <div>Cars {showAllItems}</div>}
         <hr></hr>
         <button
-          className="border-black border-2 rounded-2xl py-2 px-4 "
+          className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
           onClick={() => {
             handleBack();
           }}
@@ -344,13 +344,13 @@ function App() {
     return (
       <div>
         <button
-          className="border-black border-2 rounded-2xl py-2 px-4 "
+          className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
           onClick={() => getOneByOneCarPrev()}
         >
           Prev
         </button>
         <button
-          className="border-black border-2 rounded-2xl py-2 px-4 "
+          className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
           onClick={() => getOneByOneCarNext()}
         >
           Next
@@ -362,13 +362,13 @@ function App() {
           onChange={(e) => setUpdate(e.target.value)}
         />
         <button
-          className="border-black border-2 rounded-2xl py-2 px-4 "
+          className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
           onClick={() => updateCar(car[index]._id)}
         >
           Update
         </button>
         <button
-          className="border-black border-2 rounded-2xl py-2 px-4 "
+          className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
           onClick={() => {
             handleBack();
           }}
@@ -400,25 +400,25 @@ function App() {
           onChange={(e) => setChecked4(!checked4)}
         />
         <button
-          className="border-black border-2 rounded-2xl py-2 px-4 "
+          className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
           onClick={() => getOneByOneCarPrev()}
         >
           Prev
         </button>
         <button
-          className="border-black border-2 rounded-2xl py-2 px-4 "
+          className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
           onClick={() => getOneByOneCarNext()}
         >
           Next
         </button>
         <button
-          className="border-black border-2 rounded-2xl py-2 px-4 "
+          className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
           onClick={() => deleteOneCar(car[index]._id)}
         >
           Delete
         </button>
         <button
-          className="border-black border-2 rounded-2xl py-2 px-4 "
+          className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
           onClick={() => {
             handleBack();
           }}
@@ -441,17 +441,19 @@ function App() {
     );
   };
   return (
-    <div>
-      <h1 class="text-5xl font-extrabold dark:text-white">Catalog of Cars</h1>
-      <div style={{ display: "flex" }}>
-        <div style={{ width: "25%", flex: 1 }}>
-          <img src={carLogo} alt = "carLogo" />
-          <div>
-            <h1>Dealership</h1>
-            <p className="text-gray-700 text-white">
-              {" "}
-              by -{" "}
-              <b style={{ color: "orange" }}>
+    <div style={{ height: "100%" }}>
+      <h1 class="text-5xl font-extrabold dark:text-white bg-neutral-700 p-1 pb-3">
+        Catalog of Cars
+      </h1>
+      <div style={{ display: "flex", height: "100%" }}>
+        <div class="flex-col h-screen flex items-center  gap-20 w-2/5">
+          <div class="flex justify-center">
+            <img class="object-center w-1/2" src={carLogo} alt="carLogo" />
+          </div>
+          <div class="inline-block align-middle text-center">
+            <p>
+              By -{" "}
+              <b style={{}}>
                 Eduardo Ramirez: eduardor@iastate.edu and Isabelle Raghavan:
                 raghavan@iastate.edu
               </b>

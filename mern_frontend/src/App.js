@@ -247,67 +247,83 @@ function App() {
 
   const Add = () => {
     return (
-      <div>
+      <div class=" flex-col flex items-center justify-center p-2">
         <h3>Add a new car:</h3>
         <form action="">
-          <input
-            type="number"
-            placeholder="id?"
-            name="_id"
-            value={addNewCar._id}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            placeholder="year, make, and model?"
-            name="title"
-            value={addNewCar.title}
-            onChange={handleChange}
-          />
-          <input
-            type="number"
-            placeholder="price?"
-            name="price"
-            value={addNewCar.price}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            placeholder="category?"
-            name="category"
-            value={addNewCar.category}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            placeholder="image?"
-            name="image"
-            value={addNewCar.image}
-            onChange={handleChange}
-          />
-          <input
-            type="number"
-            placeholder="color?"
-            name="color"
-            value={addNewCar.color}
-            onChange={handleChange}
-          />
-          <button
-            className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
-            type="submit"
-            onClick={handleOnSubmit}
-          >
-            Submit
-          </button>
-          <button
-            className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
-            onClick={() => {
-              handleBack();
-            }}
-            type="button"
-          >
-            Go Back
-          </button>
+          <div class="flex-col flex items-center justify-center gap-5  p-2">
+            <div class="flex items-center gap-2 justify-center">
+              <p>ID: </p>{" "}
+              <input
+                class="border-black border-2"
+                type="number"
+                placeholder="id?"
+                name="_id"
+                value={addNewCar._id}
+                onChange={handleChange}
+              />
+            </div>
+            <input
+              class="border-black border-2"
+              type="text"
+              placeholder="Make and Model?"
+              name="title"
+              value={addNewCar.title}
+              onChange={handleChange}
+            />
+            <div class="flex items-center gap-2 justify-center">
+              <p>Price: </p>{" "}
+              <input
+                class="border-black border-2"
+                type="number"
+                placeholder="Price?"
+                name="price"
+                value={addNewCar.price}
+                onChange={handleChange}
+              />
+            </div>
+            <input
+              class="border-black border-2"
+              type="text"
+              placeholder="Category?"
+              name="category"
+              value={addNewCar.category}
+              onChange={handleChange}
+            />
+            <input
+              class="border-black border-2"
+              type="text"
+              placeholder="Image?"
+              name="image"
+              value={addNewCar.image}
+              onChange={handleChange}
+            />
+            <input
+              class="border-black border-2"
+              type="number"
+              placeholder="Color?"
+              name="color"
+              value={addNewCar.color}
+              onChange={handleChange}
+            />
+          </div>
+          <div class="flex items-center gap-2 justify-center">
+            <button
+              className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+              type="submit"
+              onClick={handleOnSubmit}
+            >
+              Submit
+            </button>
+            <button
+              className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+              onClick={() => {
+                handleBack();
+              }}
+              type="button"
+            >
+              Go Back
+            </button>
+          </div>
         </form>
       </div>
     );

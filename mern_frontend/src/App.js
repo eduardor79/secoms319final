@@ -164,8 +164,8 @@ function App() {
   }
 
   const showAllItems = car.map((el) => (
-    <div key={el._id}>
-      <img src={el.image} alt="" width={30} /> <br />
+    <div key={el._id} class="border-2 border-black">
+      <img src={el.image} alt="" width={100} /> <br />
       Title: {el.title} <br />
       Category: {el.category} <br />
       Price: {el.price} <br />
@@ -187,6 +187,9 @@ function App() {
   const handleBack = () => {
     setScreen("");
   };
+  const handleCredits = () => {
+    setScreen("Credits");
+  };
   const chooseComponent = (screen) => {
     switch (screen) {
       case "Add": {
@@ -200,6 +203,9 @@ function App() {
       }
       case "Delete": {
         return Delete();
+      }
+      case "Credits": {
+        return Credits();
       }
       default:
         return (
@@ -240,11 +246,50 @@ function App() {
             >
               Update
             </button>
+            <button
+              className="text-xl w-1/3 bg-blue-500 hover:bg-blue-400 text-white font-bold py-4 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded "
+              onClick={() => {
+                handleCredits();
+              }}
+              type="button"
+            >
+              Credits
+            </button>
           </div>
         );
     }
   };
-
+  const Credits = () => {
+    return (
+      <div class="pt-5 flex-col flex items-center justify-center gap-10 ">
+        <div class="inline-block align-middle text-center">
+          <p>
+            By -{" "}
+            <b style={{}}>
+              Eduardo Ramirez: eduardor@iastate.edu and Isabelle Raghavan:
+              raghavan@iastate.edu
+            </b>
+          </p>
+          <p>COMS 319: Construction of User Interfaces</p>
+          <p>5/5/2023</p>
+          <p>Abraham Aldaco</p>
+          <p>
+            This project is a final for COMS 319. It simulates a dealership
+            application for their cars.
+          </p>
+          <button
+            className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+            onClick={() => {
+              handleBack();
+            }}
+            type="button"
+          >
+            Go Back
+          </button>
+        </div>
+      </div>
+    );
+  };
   const Add = () => {
     return (
       <div class=" flex-col flex items-center justify-center p-2">
@@ -332,26 +377,25 @@ function App() {
   const Read = () => {
     return (
       <div class=" flex-col flex items-center justify-center p-2">
-         <div class="flex items-center gap-2 justify-center">
+        <div class="flex flex-col items-center gap-2 justify-center">
+          <div class="flex items-center justify-center gap-5 p-2">
             <button
               className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
-              onClick={() => getAllCars()} 
+              onClick={() => getAllCars()}
             >
               Show All Cars
             </button>
-        <hr></hr>
-        {viewer1 && <div>Cars {showAllItems}</div>}
-        
-        <hr></hr>
-        <button
-          className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
-          onClick={() => {
-            handleBack();
-          }}
-          type="button"
-        >
-          Go Back
-        </button>
+            <button
+              className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+              onClick={() => {
+                handleBack();
+              }}
+              type="button"
+            >
+              Go Back
+            </button>
+          </div>
+          <div>{viewer1 && <div class="gap-2">Cars {showAllItems}</div>}</div>
         </div>
       </div>
     );
@@ -362,49 +406,58 @@ function App() {
   const Update = () => {
     return (
       <div class="flex items-center gap-2 justify-center">
-      <div class="flex-row flex items-center justify-center gap-5  p-2">
-        <button
-          className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
-          onClick={() => getOneByOneCarPrev()}
-        >
-          Prev
-        </button>
-        <button
-          className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
-          onClick={() => getOneByOneCarNext()}
-        >
-          Next
-        </button>
-        <input
-          type="text"
-          placeholder="New price"
-          value={update}
-          onChange={(e) => setUpdate(e.target.value)}
-        />
-        <button
-          className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
-          onClick={() => updateCar(car[index]._id)}
-        >
-          Update
-        </button>
-        <button
-          className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
-          onClick={() => {
-            handleBack();
-          }}
-          type="button"
-        >
-          Go Back
-        </button>
-        <div key={car[index]._id}>
-          <img src={car[index].image} alt="" width={30} /> <br />
-          Id:{car[index]._id} <br />
-          Title: {car[index].title} <br />
-          Category: {car[index].category} <br />
-          Price: {car[index].price} <br />
-          Color :{car[index].color}
+        <div class="flex-col flex items-center justify-center gap-5  p-2">
+          <div class="flex-row flex items-center justify-center  gap-2">
+            <button
+              className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+              onClick={() => getOneByOneCarPrev()}
+            >
+              Prev
+            </button>
+            <button
+              className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+              onClick={() => getOneByOneCarNext()}
+            >
+              Next
+            </button>
+          </div>
+          <div class="flex-row flex items-center justify-center  gap-2">
+            <p>New Price: </p>
+            <input
+              type="text"
+              class="border-2 border-black"
+              placeholder="New price"
+              value={update}
+              onChange={(e) => setUpdate(e.target.value)}
+            />
+          </div>
+          <div class="flex-row flex items-center justify-center  gap-2">
+            <button
+              className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+              onClick={() => updateCar(car[index]._id)}
+            >
+              Update
+            </button>
+            <button
+              className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+              onClick={() => {
+                handleBack();
+              }}
+              type="button"
+            >
+              Go Back
+            </button>
+          </div>
+
+          <div key={car[index]._id}>
+            <img src={car[index].image} alt="" width={100} /> <br />
+            Id:{car[index]._id} <br />
+            Title: {car[index].title} <br />
+            Category: {car[index].category} <br />
+            Price: {car[index].price} <br />
+            Color :{car[index].color}
+          </div>
         </div>
-      </div>
       </div>
     );
   };
@@ -412,55 +465,59 @@ function App() {
   const Delete = () => {
     return (
       <div class="flex items-center gap-2 justify-center">
-        <div class="flex-row flex items-center justify-center gap-5  p-2">
-        <h3>Delete one car: </h3> 
-        <input
-          type="checkbox"
-          id="acceptdelete"
-          name="acceptdelete"
-          checked={checked4}
-          onChange={(e) => setChecked4(!checked4)}
-        />
-        <button
-          className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
-          onClick={() => getOneByOneCarPrev()}
-        >
-          Prev
-        </button>
-        <button
-          className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
-          onClick={() => getOneByOneCarNext()}
-        >
-          Next
-        </button>
-        <button
-          className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
-          onClick={() => deleteOneCar(car[index]._id)}
-        >
-          Delete
-        </button>
-        <button
-          className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
-          onClick={() => {
-            handleBack();
-          }}
-          type="button"
-        >
-          Go Back
-        </button>
-        {checked4 && (
-          <div key={car[index]._id}>
-            <img src={car[index].image} alt="" width={30} /> <br />
-            Id:{car[index]._id} <br />
-            Title: {car[index].title} <br />
-            Category: {car[index].category} <br />
-            Price: {car[index].price} <br />
-            Color: {car[index].color}
-            <br />
+        <div class="flex-col flex items-center justify-center gap-5 p-2">
+          <div class="flex items-center justify-center gap-5 p-2">
+            <h3>Delete one car: </h3>
+            <input
+              type="checkbox"
+              id="acceptdelete"
+              name="acceptdelete"
+              checked={checked4}
+              onChange={(e) => setChecked4(!checked4)}
+            />
+            <button
+              className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+              onClick={() => getOneByOneCarPrev()}
+            >
+              Prev
+            </button>
+            <button
+              className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+              onClick={() => getOneByOneCarNext()}
+            >
+              Next
+            </button>
+            <button
+              className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+              onClick={() => deleteOneCar(car[index]._id)}
+            >
+              Delete
+            </button>
+            <button
+              className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+              onClick={() => {
+                handleBack();
+              }}
+              type="button"
+            >
+              Go Back
+            </button>
           </div>
-        )}
-      </div>       
-</div>
+          <div>
+            {checked4 && (
+              <div key={car[index]._id} c>
+                <img src={car[index].image} alt="" width={100} /> <br />
+                Id:{car[index]._id} <br />
+                Title: {car[index].title} <br />
+                Category: {car[index].category} <br />
+                Price: {car[index].price} <br />
+                Color: {car[index].color}
+                <br />
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
     );
   };
   return (
@@ -474,24 +531,6 @@ function App() {
             <img class="object-center w-1/5" src={carLogo} alt="carLogo" />
           </div>{" "}
           {chooseComponent(screen)}
-          <div class="pt-5 flex-col flex items-center justify-center gap-10 ">
-            <div class="inline-block align-middle text-center">
-              <p>
-                By -{" "}
-                <b style={{}}>
-                  Eduardo Ramirez: eduardor@iastate.edu and Isabelle Raghavan:
-                  raghavan@iastate.edu
-                </b>
-              </p>
-              <p>COMS 319: Construction of User Interfaces</p>
-              <p>4/30/2023</p>
-              <p>Abraham Aldaco</p>
-              <p>
-                This project is a final for COMS 319. It simulates a dealership
-                application for their cars.
-              </p>
-            </div>
-          </div>
         </div>
       </div>
     </div>

@@ -61,6 +61,7 @@ function App() {
       });
     setChecked4(!checked4);
     getAllCars();
+    getOneByOneCarNext();
   }
 
   function getAllCars() {

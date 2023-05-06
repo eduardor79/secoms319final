@@ -42,7 +42,7 @@ app.post("/insert", async (req, res) => {
   const cprice = req.body.price;
   const ccategory = req.body.category;
   const cimage = req.body.image;
-  const ccolor = req.body.rating.color;
+  const ccolor = req.body.color;
   const formData = new Car({
     _id: c_id,
     title: ctitle,

@@ -331,15 +331,17 @@ function App() {
 
   const Read = () => {
     return (
-      <div>
-        <button
-          className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
-          onClick={() => getAllCars()}
-        >
-          Show All Cars
-        </button>
+      <div class=" flex-col flex items-center justify-center p-2">
+         <div class="flex items-center gap-2 justify-center">
+            <button
+              className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+              onClick={() => getAllCars()} 
+            >
+              Show All Cars
+            </button>
         <hr></hr>
         {viewer1 && <div>Cars {showAllItems}</div>}
+        
         <hr></hr>
         <button
           className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
@@ -350,6 +352,7 @@ function App() {
         >
           Go Back
         </button>
+        </div>
       </div>
     );
   };
@@ -358,7 +361,8 @@ function App() {
   //to update the price
   const Update = () => {
     return (
-      <div>
+      <div class="flex items-center gap-2 justify-center">
+      <div class="flex-row flex items-center justify-center gap-5  p-2">
         <button
           className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
           onClick={() => getOneByOneCarPrev()}
@@ -401,13 +405,15 @@ function App() {
           Color :{car[index].color}
         </div>
       </div>
+      </div>
     );
   };
 
   const Delete = () => {
     return (
-      <div>
-        <h3>Delete one car: </h3>
+      <div class="flex items-center gap-2 justify-center">
+        <div class="flex-row flex items-center justify-center gap-5  p-2">
+        <h3>Delete one car: </h3> 
         <input
           type="checkbox"
           id="acceptdelete"
@@ -453,7 +459,8 @@ function App() {
             <br />
           </div>
         )}
-      </div>
+      </div>       
+</div>
     );
   };
   return (

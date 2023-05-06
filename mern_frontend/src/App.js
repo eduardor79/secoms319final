@@ -13,7 +13,7 @@ function App() {
     description: "",
     category: "",
     image: "http://127.0.0.1:4000/images/",
-    rating: { rate: 0.0, count: 0 },
+    color: "",
   });
   const [checked4, setChecked4] = useState(false);
   const [index, setIndex] = useState(0);
@@ -344,7 +344,7 @@ function App() {
             />
             <input
               class="border-black border-2"
-              type="number"
+              type="text"
               placeholder="Color?"
               name="color"
               value={addNewCar.color}

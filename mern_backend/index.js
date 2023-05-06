@@ -54,7 +54,7 @@ app.post("/insert", async (req, res) => {
   try {
     // await formData.save();
     await Car.create(formData);
-    const messageResponse = { message: `Car ${p_id} added correctly` };
+    const messageResponse = { message: `Car ${c_id} added correctly` };
     res.send(JSON.stringify(messageResponse));
   } catch (err) {
     console.log("Error while adding a new car:" + err);
@@ -87,10 +87,12 @@ app.put("/update/:id", async (req, res) => {
     if (!updatedCar) {
       return res.status(404).send({ message: "Car not found" });
     }
-
-    res.send(updatedCar);
+    const messageResponse = {
+      message: `Car ${query._id} updated correctly`,
+    };
+    res.send(JSON.stringify(messageResponse));
   } catch (err) {
-    console.log("Error while updating a car:" + err);
+    console.log("Error while updating a car: " + err);
     res.status(500).send({ message: "Internal server error" });
   }
 });

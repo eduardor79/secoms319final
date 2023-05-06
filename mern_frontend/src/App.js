@@ -60,6 +60,7 @@ function App() {
         }
       });
     setChecked4(!checked4);
+    getAllCars();
   }
 
   function getAllCars() {
@@ -91,6 +92,7 @@ function App() {
           alert(value);
         }
       });
+    getAllCars();
   }
 
   const showOneItem = oneCar.map((el) => (
@@ -161,6 +163,7 @@ function App() {
       })
       .catch((err) => console.log("Error while updating car: ", err));
     setChecked4(!checked4);
+    getAllCars();
   }
 
   const showAllItems = car.map((el) => (
@@ -432,6 +435,13 @@ function App() {
             />
           </div>
           <div class="flex-row flex items-center justify-center  gap-2">
+            <input
+              type="checkbox"
+              id="acceptdelete"
+              name="acceptdelete"
+              checked={checked4}
+              onChange={(e) => setChecked4(!checked4)}
+            />
             <button
               className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
               onClick={() => updateCar(car[index]._id)}
@@ -448,15 +458,16 @@ function App() {
               Go Back
             </button>
           </div>
-
-          <div key={car[index]._id}>
-            <img src={car[index].image} alt="" width={100} /> <br />
-            Id:{car[index]._id} <br />
-            Title: {car[index].title} <br />
-            Category: {car[index].category} <br />
-            Price: {car[index].price} <br />
-            Color :{car[index].color}
-          </div>
+          {checked4 && (
+            <div key={car[index]._id}>
+              <img src={car[index].image} alt="" width={100} /> <br />
+              Id:{car[index]._id} <br />
+              Title: {car[index].title} <br />
+              Category: {car[index].category} <br />
+              Price: {car[index].price} <br />
+              Color :{car[index].color}
+            </div>
+          )}
         </div>
       </div>
     );
